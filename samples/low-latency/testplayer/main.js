@@ -1,4 +1,4 @@
-var METRIC_INTERVAL = 500;
+var METRIC_INTERVAL = 200;
 
 var App = function () {
     this.player = null;
@@ -11,7 +11,7 @@ var App = function () {
         chart: {}
     }
     this.chartTimeout = null;
-    this.chartReportingInterval = 500;
+    this.chartReportingInterval = 200;
     this.chartNumberOfEntries = 50;
     this.chartData = {
         playbackTime: 0,
