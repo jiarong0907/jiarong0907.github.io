@@ -16,6 +16,31 @@
    <script src="./js/bootstrap.min.js"></script>
    <script src="./js/jquery.min.js"></script>
    <script src="./js/popper.min.js"></script>
+   <style>
+      .selected {
+         display: none;
+      }
+   </style>
+   <script>
+      $(document).ready(function() {
+         $('.pub-item[data-selected="false"]').hide(); // Hide non-selected items by default
+         $('#selected-pub').click(function(e) {
+            e.preventDefault();
+            $('.pub-item').hide();
+            $('.pub-item[data-selected="true"]').show();
+            $('html, body').animate({
+            scrollTop: $('.selected').offset().top
+           }, 1000);
+          });
+         $('#all-pub').click(function(e) {
+            e.preventDefault();
+            $('.pub-item').show();
+            $('html, body').animate({
+            scrollTop: $('.selected').offset().top
+           }, 1000);
+         });
+      });
+   </script>
    <title>Jiarong Xing's homepage</title>
    <meta name="description" content="Ph.D. student at Rice University">
    <meta name="keywords" content="Jiarong Xing, Computer Science, Rice, PhD, Research">
@@ -31,17 +56,17 @@
                <li class="nav-item">
                   <a class="nav-link" href="http://jxing.me/#about">About</a>
                </li>
-               <li class="nav-item">
+               <!-- <li class="nav-item">
                   <a class="nav-link" href="http://jxing.me/#news">News</a>
-               </li>
+                  </li> -->
                <li class="nav-item">
                   <a class="nav-link" href="http://jxing.me/#pub">Publications</a>
                </li>
                <!--
                   <li class="nav-item">
                   <a class="nav-link" href="https://qiaokang.org/poise-web/">Projects</a>
-               </li>
-               -->
+                  </li>
+                  -->
                <li class="nav-item">
                   <a class="nav-link" href="http://jxing.me/#awards">Awards</a>
                </li>
@@ -98,10 +123,10 @@
                transforming it into a defense backbone.
                <br>
                <br>
-               I am a recipient of Google Ph.D. Fellowship (2022).
+               I am a recipient of Google Ph.D. Fellowship (2022) and a finalist for Meta Ph.D. Research Fellowship (2022).
             </div>
             <br>
-            <div>
+            <!-- <div>
                <span class="anchor" id="news"></span>
                <h2 class="bg-light h2color">News</h2>
                <ul>
@@ -112,255 +137,301 @@
                   <li>(8/2021)<b>[Paper]</b> Woohoo!! I have been getting three accepts this summer. They are FlexCore(NSDI), Bedrock(USENIX Security), and Clara(SOSP). Thanks for the great teamwork!</li>
                   <li>(4/2021)<b>[Award]</b> I am very excited to receive the Lodieska Stockbridge Vaughn Fellowship fellowship for 2021-2022. This award is given to Rice
                      graduate students who have demonstrated outstanding achievement and promise. Only 3 students won the award across 60+ departments' nominees.</li>
-                  <!---<li>(3/2021)<b>[Service]</b> I am happy to serve on the program committee of ACM SIGCOMM 2021 Workshop on Secure Programmable network INfrastructure (<a href="https://conferences.sigcomm.org/sigcomm/2021/workshop-spin.html">SPIN 2021</a>)
-                     Come and submit your interesting work!!</li>-->
-                  <li>(12/2020)<b>[Award]</b> I am honored to receive the Ken Kennedy Institute 2020/21 Andrew Ladd Graduate Fellowship from our CS department!
-                     This fellowship is awarded to graduate students who have outstanding research achievements. Only one graduate student is selected in the CS department each year!</li>
-                  <!---<li>(11/2020)<b>[Paper]</b> Our paper, "<b>Probabilistic Profiling of Stateful Data Planes for Adversarial Testing</b>", has been accepted by ASPLOS 2021! Congrats to the team!</li>-->
                </ul>
-            </div>
+               </div> -->
             <div>
                <span class="anchor" id="pub"></span>
                <h2 class="bg-light  h2color">Publications</h2>
-			   <h5> Conference papers </h5>
-			   <ul>
+               <a href="#" id="selected-pub">[Selected Publications]</a> &nbsp; &nbsp; <a href="#" id="all-pub">[All Publications]</a>
 
-               <li>
-                  <font size="4"><b>Runtime Programmable Switches</b>
-
-
-                  <a class="text-important" href="./pdf/flexcore-nsdi22.pdf" target="_blank">[pdf]</a>
-                  <a class="text-danger" href="./slides/FlexCore-final.pptx">[slides]</a>
-                  <a class="text-success" href="https://github.com/jiarong0907/FlexCore" target="_blank">[code]</a>
-                  <a class="text-info" href="./slides/FlexCore-poster.pdf">[poster]</a>
-
-
-                  </font>
-                  <br><b>Jiarong Xing</b>, Kuo-Feng Hsu, Matty Kadosh, Alan Lo, Yonatan Piasetzky, Arvind Krishnamurthy, and Ang Chen
-                  <br><a href="https://www.usenix.org/conference/nsdi22"> [NSDI 2022] </a>, RENTON, WA, USA, April, 2022
-                  </li>
-               <br>
-
-               <li>
-                  <font size="4"><b>Bedrock: Programmable Network Support for Secure RDMA Systems</b>
-                  <a class="text-important" href="./pdf/bedrock-sec22.pdf" target="_blank">[pdf]</a>
-                  <a class="text-danger" href="./slides/UsenixSecurity22-Bedrock.pdf">[slides]</a>
-                  <a class="text-success" href="https://github.com/alex1230608/Bedrock" target="_blank">[code]</a>
-                  </font>
-                  <br><b>Jiarong Xing</b>, Kuo-Feng Hsu (equal contribution), Yiming Qiu, Ziyang Yang, Hongyi Liu, and Ang Chen
-                  <br><a href="https://www.usenix.org/conference/usenixsecurity22"> [USENIX Security 2022] </a>, BOSTON, MA, USA, August, 2022
-                 </li>
-                  <br>
-
-                 <li>
-                  <font size="4"><b>Bolt: Bridging the Gap between Auto-tuners and Hardware-native Performance</b>
-                  <!---<a class="text-important" href="https://arxiv.org/pdf/2110.15238.pdf" target="_blank">[Arxiv]</a>--->
-                  <a class="text-important" href="./pdf/bolt-mlsys21.pdf" target="_blank">[pdf]</a>
-                  <a class="text-danger" href="./slides/Bolt-mlsys.pdf">[slides]</a>
-                  <a class="text-success" href="https://github.com/apache/tvm/commit/541f9f2d8aef9697fd7ccb6a7c0644da273f33b6" target="_blank">[code]</a>
-                  </font>
-                  <br><b>Jiarong Xing</b>, Leyuan Wang (equal contribution), Shang Zhang, Jack Chen, Ang Chen, and Yibo Zhu
-                  <br><a href="https://mlsys.org/"> [MLSys 2022] </a>, Santa Clara, CA, USA, August, 2022
-                 </li>
-                  <br>
-
+               <ul>
+                  <div class="pub-item" data-selected="true">
                   <li>
-                  <font size="4"><b>Symbolic Distillation for Learned TCP Congestion Control</b>
-                  <a class="text-important" href="./pdf/NeurIPS22.pdf" target="_blank">[pdf]</a>
-                  <a class="text-success" href="https://github.com/VITA-Group/SymbolicPCC" target="_blank">[code]</a>
-                  </font>
-                  <br>S P Sharan,  Wenqing Zheng, Kuo-Feng Hsu, <b>Jiarong Xing</b>, Ang Chen, Zhangyang Wang
-                  <br><a href="https://nips.cc/Conferences/2022"> [NeurIPS 2022] </a>, New Orleans, LA, USA, December, 2022
+                     <font size="4"><b>Unleashing SmartNIC Packet Processing Performance in P4</b></font>
+                     <br><b>Jiarong Xing</b>, Yiming Qiu, Kuo-Feng Hsu, Songyuan Sui, Khalid Manaa, Omer Shabtai, Yonatan Piasetzky, Matty Kadosh,
+                     <br>Arvind Krishnamurthy, T. S. Eugene Ng, and Ang Chen
+                     <br><a href="https://conferences.sigcomm.org/sigcomm/2023/"> [SIGCOMM 2023] </a>
                   </li>
                   <br>
+                  </div>
 
 
-               <li>
-					   <font size="4"><b>A Vision for Runtime Programmable Networks</b>
-                  <a class="text-important" href="./pdf/flexnet-hotnets21.pdf" target="_blank">[pdf]</a>
-                  <!---
-						<a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
-                  <a class="text-success" href="https://github.com/qiaokang92/P4wn" target="_blank">[code]</a>
-                  --->
-                  <a class="text-info" href="https://www.youtube.com/watch?v=KS5_0szC6a0&ab_channel=Hotnets2021">[video]</a>
-
-                  </font>
-                  <br><b>Jiarong Xing</b>, Yiming Qiu, Kuo-Feng Hsu, Hongyi Liu, Matty Kadosh, Alan Lo, Aditya Akella, Thomas Anderson, Arvind Krishnamurthy, T. S. Eugene Ng and Ang Chen
-                  <br><a href="https://conferences.sigcomm.org/hotnets/2021/"> [HotNets 2021] </a>, Virtual Event, Virtual, November, 2021
-               </li>
-				  <br>
-
-              <li>
-               <font size="4"><b>Automating SmartNIC Offloading Insights for Network Functions</b>
-               <a class="text-important" href="./pdf/clara-sosp21.pdf" target="_blank">[pdf]</a>
-               <!---
-               <a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
-               --->
-               <a class="text-success" href="https://github.com/824728350/Clara" target="_blank">[code]</a>
-               </font>
-               <br>Yiming Qiu, <b>Jiarong Xing</b>, Kuo-Feng Hsu, Qiao Kang, Ming Liu, Srinivas Narayana, and Ang Chen
-               <br><a href="https://sosp2021.mpi-sws.org/"> [SOSP 2021] </a>, Virtual Event, Virtual, October, 2021
-               </li>
-               <br>
-
-              <li>
-               <font size="4"><b>Probabilistic Profiling of Stateful Data Planes for Adversarial Testing</b>
-               <a class="text-important" href="./pdf/p4wn-asplos21.pdf" target="_blank">[pdf]</a>
-               <a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
-               <a class="text-success" href="https://github.com/qiaokang92/P4wn" target="_blank">[code]</a>
-               </font>
-               <br>Qiao Kang, <b>Jiarong Xing (equal contribution),</b> Yiming Qiu, and Ang Chen
-               <br><a href="https://asplos-conference.org/"> [ASPLOS 2021] </a>, Virtual Event, Virtual, April, 2021
-               </li>
-               <br>
-
-				  <li>
-					<font size="4"><b>Ripple: A Programmable, Decentralized Link-Flooding Defense Against Adaptive Adversaries</b>
-						<a class="text-important" href="./pdf/ripple-sec21.pdf">[pdf]</a>
-						<a class="text-danger" href="https://jxing.me">[slides]</a>
-						<a class="text-success" href="https://github.com/jiarong0907/Ripple">[code]</a><br>
-					</font>
-					<b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/usenixsecurity21"> [USENIX Security 2021] </a>, Vancouver, B.C., Canada, August, 2021
-				 </li>
-				 <br>
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Enabling Resilience in Virtualized RANs with Atlas</b></font>
+                     <br><b>Jiarong Xing</b>, Junzhi Gong, Xenofon Foukas, Anuj Kalia, Daehyeok Kim, and Manikanta Kotaru
+                     <br><a href="https://www.sigmobile.org/mobicom/2023/"> [MobiCom 2023] </a>
+                  </li>
+                  <br>
+                  </div>
 
 
-				 <li>
-					<font size="4"><b>Secure State Migration in the Data Plane</b>
-						<a class="text-important" href="./pdf/p4sync-spin20.pdf">[pdf]</a>
-						<a class="text-danger" href="./slides/P4Sync-SPIN2020.pptx">[slides]</a>
-						<a class="text-success" href="https://github.com/jiarong0907/P4Sync">[code]</a><br>
-					</font>
-					<b>Jiarong Xing,</b> Ang Chen, and T.S. Eugene Ng
-					<br><a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">[SIGCOMM Workshop on SPIN 2020]</a>, Virtual Event, NY, USA, August, 2020
-				 </li>
-				 <br>
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>Remote Direct Memory Introspection</b></font>
+                     <br>Hongyi Liu, <b>Jiarong Xing</b>, Yibo Huang, Danyang Zhuo, Srinivas Devadas, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/usenixsecurity23"> [USENIX Security 2023] </a>
+                  </li>
+                  <br>
+                  </div>
 
-				 <li>
-					<font size="4"><b>A Feasibility Study on Time-aware Monitoring with Commodity Switches</b>
-						<a class="text-important" href="./pdf/feasibility-spin20.pdf">[pdf]</a><br>
-					</font>
-					Yiming Qiu, Kuo-Feng Hsu, <b>Jiarong Xing</b>, and Ang Chen
-					<br><a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">[SIGCOMM Workshop on SPIN 2020]</a>, Virtual Event, NY, USA, August, 2020
-				 </li>
-				 <br>
-
-				 <li>
-					<font size="4"><b>NetWarden: Mitigating Network Covert Channels while Preserving Performance</b>
-						<a class="text-important" href="./pdf/netwarden-sec20.pdf">[pdf]</a>
-						<a class="text-danger" href="./slides/NetWarden-Security2020.pptx">[slides]</a>
-						<a class="text-success" href="https://github.com/jiarong0907/NetWarden">[code]</a><br>
-					</font>
-					<b>Jiarong Xing,</b> Qiao Kang, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/usenixsecurity20"> [USENIX Security 2020] </a>, Virtual Event, MA, USA, August, 2020
-				 </li>
-				 <br>
-
-				 <li>
-					<font size="4"><b>Architecting Programmable Data Plane Defenses into the Network with FastFlex</b>
-						<a class="text-important" href="./pdf/fastflex-hotnets19.pdf">[pdf]</a>
-						<a class="text-danger" href="./slides/FastFlex-HotNets2019.pptx">[slides]</a><br>
-					</font>
-					<b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
-					<br><a href="https://conferences.sigcomm.org/hotnets/2019/index.html">[ACM Workshop on HotNets 2019]</a>, Princeton, New Jersey, USA, November , 2019
-				 </li>
-				 <br>
-
-				 <li>
-					<font size="4"><b>Automated Attack Discovery in Data Plane Systems</b>
-						<a class="text-important" href="https://qiaokang.org/papers/cset19.pdf">[pdf]</a>
-						<a class="text-danger" href="https://qiaokang.org/papers/cset19_slides.pdf">[slides]</a><br>
-					</font>
-					Qiao Kang, <b>Jiarong Xing</b>, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/cset19">[USENIX Workshop on CSET 2019]</a>, Santa Clara, CA, USA, August, 2019
-				 </li>
-				 <br>
-
-				 <li>
-					<font size="4"><b>NetWarden: Mitigating Network Covert Channels without Performance Loss</b>
-						<a class="text-important" href="./pdf/netwarden-hotcloud19.pdf">[pdf]</a>
-						<a class="text-danger" href="./slides/NetWarden-HotCloud2019.pptx">[slides]</a><br>
-					</font>
-					<b>Jiarong Xing,</b> Adam Morrison, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/hotcloud19/presentation/xing">[USENIX Workshop on HotCloud 2019]</a>, Renton, WA, USA, July, 2019
-				 </li>
-				</ul>
-
-				 <!-- <h5> Posters </h5>
-				<ul>
-				 <li>
-					<font size="4"><b>Link-flooding Defense Entirely on The Data Plane</b>
-						<a class="text-important" href="./pdf/paper_poster_sec2019poster.pdf">[pdf]</a><br>
-					</font>
-					<b>Jiarong Xing</b>, Wenqing Wu, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/usenixsecurity19">[USENIX Security Poster 2019]</a>, Santa Clara, CA, USA, August, 2019
-				 </li>
-				 <br>
-
-				 <li>
-					<font size="4"><b>Automated Attack Discovery in Data Plane Systems</b>
-						<a class="text-important" href="https://qiaokang.org/papers/security19_poster.pdf">[pdf]</a><br>
-					</font>
-					Qiao Kang, <b>Jiarong Xing</b>, and Ang Chen
-					<br><a href="https://www.usenix.org/conference/usenixsecurity19">[USENIX Security Poster 2019]</a>, Santa Clara, CA, USA, August, 2019
-				 </li>
-				 <br> -->
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Runtime Programmable Switches</b></font>
+                     <br><b>Jiarong Xing</b>, Kuo-Feng Hsu, Matty Kadosh, Alan Lo, Yonatan Piasetzky, Arvind Krishnamurthy, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/nsdi22"> [NSDI 2022] </a>
+                     <a class="text-important" href="./pdf/flexcore-nsdi22.pdf" target="_blank">[pdf]</a>
+                     <a class="text-danger" href="./slides/FlexCore-final.pptx">[slides]</a>
+                     <a class="text-success" href="https://github.com/jiarong0907/FlexCore" target="_blank">[code]</a>
+                     <a class="text-info" href="./slides/FlexCore-poster.pdf">[poster]</a>
+                  </li>
+                  <br>
+                  </div>
 
 
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Bedrock: Programmable Network Support for Secure RDMA Systems</b></font>
+                     <br><b>Jiarong Xing</b>, Kuo-Feng Hsu (equal contribution), Yiming Qiu, Ziyang Yang, Hongyi Liu, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/usenixsecurity22"> [USENIX Security 2022] </a>
+                     <a class="text-important" href="./pdf/bedrock-sec22.pdf" target="_blank">[pdf]</a>
+                     <a class="text-danger" href="./slides/UsenixSecurity22-Bedrock.pdf">[slides]</a>
+                     <a class="text-success" href="https://github.com/alex1230608/Bedrock" target="_blank">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Bolt: Bridging the Gap between Auto-tuners and Hardware-native Performance</b></font>
+                     <br><b>Jiarong Xing</b>, Leyuan Wang (equal contribution), Shang Zhang, Jack Chen, Ang Chen, and Yibo Zhu
+                     <br><a href="https://mlsys.org/"> [MLSys 2022] </a>
+                     <!---<a class="text-important" href="https://arxiv.org/pdf/2110.15238.pdf" target="_blank">[Arxiv]</a>--->
+                     <a class="text-important" href="./pdf/bolt-mlsys21.pdf" target="_blank">[pdf]</a>
+                     <a class="text-danger" href="./slides/Bolt-mlsys.pdf">[slides]</a>
+                     <a class="text-success" href="https://github.com/apache/tvm/commit/541f9f2d8aef9697fd7ccb6a7c0644da273f33b6" target="_blank">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>Symbolic Distillation for Learned TCP Congestion Control</b></font>
+                     <br>S P Sharan,  Wenqing Zheng, Kuo-Feng Hsu, <b>Jiarong Xing</b>, Ang Chen, Zhangyang Wang
+                     <br><a href="https://nips.cc/Conferences/2022"> [NeurIPS 2022] </a>
+                     <a class="text-important" href="./pdf/NeurIPS22.pdf" target="_blank">[pdf]</a>
+                     <a class="text-success" href="https://github.com/VITA-Group/SymbolicPCC" target="_blank">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>A Vision for Runtime Programmable Networks</b></font>
+                     <br><b>Jiarong Xing</b>, Yiming Qiu, Kuo-Feng Hsu, Hongyi Liu, Matty Kadosh, Alan Lo, Aditya Akella, Thomas Anderson,
+                     <br>Arvind Krishnamurthy, T. S. Eugene Ng and Ang Chen
+                     <br><a href="https://conferences.sigcomm.org/hotnets/2021/"> [HotNets 2021] </a>
+                     <a class="text-important" href="./pdf/flexnet-hotnets21.pdf" target="_blank">[pdf]</a>
+                     <!---
+                        <a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
+                                    <a class="text-success" href="https://github.com/qiaokang92/P4wn" target="_blank">[code]</a>
+                                    --->
+                     <a class="text-info" href="https://www.youtube.com/watch?v=KS5_0szC6a0&ab_channel=Hotnets2021">[video]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>Automating SmartNIC Offloading Insights for Network Functions</b></font>
+                     <br>Yiming Qiu, <b>Jiarong Xing</b>, Kuo-Feng Hsu, Qiao Kang, Ming Liu, Srinivas Narayana, and Ang Chen
+                     <br><a href="https://sosp2021.mpi-sws.org/"> [SOSP 2021] </a>
+                     <a class="text-important" href="./pdf/clara-sosp21.pdf" target="_blank">[pdf]</a>
+                     <!---
+                        <a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
+                        --->
+                     <a class="text-success" href="https://github.com/824728350/Clara" target="_blank">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Probabilistic Profiling of Stateful Data Planes for Adversarial Testing</b></font>
+                     <br>Qiao Kang, <b>Jiarong Xing (equal contribution),</b> Yiming Qiu, and Ang Chen
+                     <br><a href="https://asplos-conference.org/"> [ASPLOS 2021] </a>
+                     <a class="text-important" href="./pdf/p4wn-asplos21.pdf" target="_blank">[pdf]</a>
+                     <a class="text-danger" href="./slides/ASPLOS-2021.pptx">[slides]</a>
+                     <a class="text-success" href="https://github.com/qiaokang92/P4wn" target="_blank">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Ripple: A Programmable, Decentralized Link-Flooding Defense Against Adaptive Adversaries</b></font>
+                     <br><b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/usenixsecurity21"> [USENIX Security 2021] </a>
+                     <a class="text-important" href="./pdf/ripple-sec21.pdf">[pdf]</a>
+                     <a class="text-danger" href="https://jxing.me">[slides]</a>
+                     <a class="text-success" href="https://github.com/jiarong0907/Ripple">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>Secure State Migration in the Data Plane</b></font>
+                     <br><b>Jiarong Xing,</b> Ang Chen, and T.S. Eugene Ng
+                     <br><a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">[SIGCOMM Workshop on SPIN 2020]</a>
+                     <a class="text-important" href="./pdf/p4sync-spin20.pdf">[pdf]</a>
+                     <a class="text-danger" href="./slides/P4Sync-SPIN2020.pptx">[slides]</a>
+                     <a class="text-success" href="https://github.com/jiarong0907/P4Sync">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>A Feasibility Study on Time-aware Monitoring with Commodity Switches</b></font>
+                     <br> Yiming Qiu, Kuo-Feng Hsu, <b>Jiarong Xing</b>, and Ang Chen
+                     <br><a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">[SIGCOMM Workshop on SPIN 2020]</a>
+                     <a class="text-important" href="./pdf/feasibility-spin20.pdf">[pdf]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>NetWarden: Mitigating Network Covert Channels while Preserving Performance</b></font>
+                     <br><b>Jiarong Xing,</b> Qiao Kang, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/usenixsecurity20"> [USENIX Security 2020] </a>
+                     <a class="text-important" href="./pdf/netwarden-sec20.pdf">[pdf]</a>
+                     <a class="text-danger" href="./slides/NetWarden-Security2020.pptx">[slides]</a>
+                     <a class="text-success" href="https://github.com/jiarong0907/NetWarden">[code]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="true">
+                  <li>
+                     <font size="4"><b>Architecting Programmable Data Plane Defenses into the Network with FastFlex</b></font>
+                     <br><b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
+                     <br><a href="https://conferences.sigcomm.org/hotnets/2019/index.html">[HotNets 2019]</a>
+                     <a class="text-important" href="./pdf/fastflex-hotnets19.pdf">[pdf]</a>
+                     <a class="text-danger" href="./slides/FastFlex-HotNets2019.pptx">[slides]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>Automated Attack Discovery in Data Plane Systems</b></font>
+                     <br>Qiao Kang, <b>Jiarong Xing</b>, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/cset19">[USENIX Workshop on CSET 2019]</a>
+                     <a class="text-important" href="https://qiaokang.org/papers/cset19.pdf">[pdf]</a>
+                     <a class="text-danger" href="https://qiaokang.org/papers/cset19_slides.pdf">[slides]</a>
+                  </li>
+                  <br>
+                  </div>
+
+
+                  <div class="pub-item" data-selected="false">
+                  <li>
+                     <font size="4"><b>NetWarden: Mitigating Network Covert Channels without Performance Loss</b></font>
+                     <br><b>Jiarong Xing,</b> Adam Morrison, and Ang Chen
+                     <br><a href="https://www.usenix.org/conference/hotcloud19/presentation/xing">[USENIX Workshop on HotCloud 2019]</a>
+                     <a class="text-important" href="./pdf/netwarden-hotcloud19.pdf">[pdf]</a>
+                     <a class="text-danger" href="./slides/NetWarden-HotCloud2019.pptx">[slides]</a>
+                  </li>
+                  <br>
+                  </div>
+               </ul>
+               </div>
+               <!-- <h5> Posters </h5>
+                  <ul>
+                   <li>
+                  	<font size="4"><b>Link-flooding Defense Entirely on The Data Plane</b>
+                  		<a class="text-important" href="./pdf/paper_poster_sec2019poster.pdf">[pdf]</a><br>
+                  	</font>
+                  	<b>Jiarong Xing</b>, Wenqing Wu, and Ang Chen
+                  	<br><a href="https://www.usenix.org/conference/usenixsecurity19">[USENIX Security Poster 2019]</a>, Santa Clara, CA, USA, August, 2019
+                   </li>
+                   <br>
+
+                   <li>
+                  	<font size="4"><b>Automated Attack Discovery in Data Plane Systems</b>
+                  		<a class="text-important" href="https://qiaokang.org/papers/security19_poster.pdf">[pdf]</a><br>
+                  	</font>
+                  	Qiao Kang, <b>Jiarong Xing</b>, and Ang Chen
+                  	<br><a href="https://www.usenix.org/conference/usenixsecurity19">[USENIX Security Poster 2019]</a>, Santa Clara, CA, USA, August, 2019
+                   </li>
+                   <br> -->
+               </ul>
+
+
+            </div>
+            <div>
+               <span class="anchor" id="awards"></span>
+               <h2 class="bg-light h2color">Awards & Honors</h2>
+               <ul>
+                  <li> Google PhD Fellowship for systems and networking <i>(6 students selected world-wide)</i>, Google <span style="float:right">2022</span></li>
+                  <li> Meta PhD Research Fellowship finalists for networking <i>(6 students selected world-wide)</i>, Meta <span style="float:right">2022</span></li>
+                  <li> Lodieska Stockbridge Vaughn Fellowship<i>(3 student selected university-wide)</i>, Rice University <span style="float:right">2021</span></li>
+                  <li> Ken Kennedy Institute 2020/21 Andrew Ladd Graduate Fellowship <i>(1 student selected department-wide)</i>, CS Department, Rice University <span style="float:right">2020</span></li>
                </ul>
             </div>
-
-            <div>
-					<span class="anchor" id="awards"></span>
-					<h2 class="bg-light h2color">Awards & Honors</h2>
-					<ul>
-						<li> Google PhD Fellowship for systems and networking <i>(6 students selected world-wide)</i>, Google <span style="float:right">2022</span></li>
-						<li> Meta PhD Research Fellowship finalists for networking <i>(6 students selected world-wide)</i>, Meta <span style="float:right">2022</span></li>
-						<li> Lodieska Stockbridge Vaughn Fellowship<i>(3 student selected university-wide)</i>, Rice University <span style="float:right">2021</span></li>
-						<li> Ken Kennedy Institute 2020/21 Andrew Ladd Graduate Fellowship <i>(1 student selected department-wide)</i>, CS Department, Rice University <span style="float:right">2020</span></li>
-					</ul>
-				</div>
             <br>
-
             <div>
                <span class="anchor" id="service"></span>
                <h2 class="bg-light h2color">Service</h2>
-            <h5> Conference committee </h5>
+               <h5> Conference committee </h5>
                <ul>
-               <li>ACM SIGCOMM 2022 Posters and Demos</li>
-               <li>ACM SIGCOMM 2022 Workshop on Formal Foundations and Security of Programmable network INfrastructures (<a href="https://conferences.sigcomm.org/sigcomm/2022/workshop-ffspin.html">FFSPIN 2022</a>)</li>
-               <li>ACM SIGCOMM 2021 Workshop on Secure Programmable network INfrastructure (<a href="https://conferences.sigcomm.org/sigcomm/2021/workshop-spin.html">SPIN 2021</a>)</li>
-               <li>2021 European Conference on Computer Systems (Shadow PC) (<a href="https://2021.eurosys.org/index.html">EuroSys 2021</a>)</li>
+                  <li>IEEE Symposium on Security and Privacy 2024</li>
+                  <li>ACM SIGCOMM 2022 Posters and Demos</li>
+                  <li>ACM SIGCOMM 2022 Workshop on Formal Foundations and Security of Programmable network INfrastructures (<a href="https://conferences.sigcomm.org/sigcomm/2022/workshop-ffspin.html">FFSPIN 2022</a>)</li>
+                  <li>ACM SIGCOMM 2021 Workshop on Secure Programmable network INfrastructure (<a href="https://conferences.sigcomm.org/sigcomm/2021/workshop-spin.html">SPIN 2021</a>)</li>
+                  <li>2021 European Conference on Computer Systems (Shadow PC) (<a href="https://2021.eurosys.org/index.html">EuroSys 2021</a>)</li>
                </ul>
-            <h5> Journal reviewer</h5>
+               <h5> Journal reviewer</h5>
                <ul>
-               <li>IEEE/ACM Transactions on Networking</li>
-               <li>IEEE Transactions on Parallel and Distributed Systems</li>
-               <li>Journal of Systems Research</li>
+                  <li>IEEE/ACM Transactions on Networking</li>
+                  <li>IEEE Transactions on Parallel and Distributed Systems</li>
+                  <li>Journal of Systems Research</li>
                </ul>
-            <!--
-               <h5> Shadow program committee </h5>
+               <!--
+                  <h5> Shadow program committee </h5>
+                  <ul>
+                  <li>2021 European Conference on Computer Systems (<a href="https://2021.eurosys.org/index.html">EuroSys 2021</a>)</li>
+                  </ul>
+                  -->
+               <h5> Conference web chair </h5>
                <ul>
-               <li>2021 European Conference on Computer Systems (<a href="https://2021.eurosys.org/index.html">EuroSys 2021</a>)</li>
+                  <li>ACM SIGCOMM 2020 Workshop on Secure Programmable Network Infrastructure (<a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">SPIN 2020</a>)</li>
                </ul>
-            -->
-			   <h5> Conference web chair </h5>
-			   <ul>
-				<li>ACM SIGCOMM 2020 Workshop on Secure Programmable Network Infrastructure (<a href="https://conferences.sigcomm.org/sigcomm/2020/workshop-spin.html">SPIN 2020</a>)</li>
-			   </ul>
-			   <h5> Guest Lecturer </h5>
-			   <ul>
-				<li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536.html">Fall 2020</a>)</li>
-				<li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536-Fall2019.html">Fall 2019</a>)</li>
-			   </ul>
-			   <h5> Teaching assistant </h5>
-			   <ul>
-				<li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536.html">Fall 2020</a>)</li>
-				<li>COMP 530: Database System Implementation (Spring 2020)</li>
-				<li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536-Fall2019.html">Fall 2019</a>)</li>
-				<li>COMP 421/521: Operating Systems and Concurrent Programming (<a href="https://www.clear.rice.edu/comp421/">Spring 2019</a>)</li>
-			   </ul>
+               <h5> Guest Lecturer </h5>
+               <ul>
+                  <li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536.html">Fall 2020</a>)</li>
+                  <li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536-Fall2019.html">Fall 2019</a>)</li>
+               </ul>
+               <h5> Teaching assistant </h5>
+               <ul>
+                  <li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536.html">Fall 2020</a>)</li>
+                  <li>COMP 530: Database System Implementation (Spring 2020)</li>
+                  <li>COMP 436/536: Secure and Cloud Computing (<a href="https://www.cs.rice.edu/~angchen/classes/COMP436536-Fall2019.html">Fall 2019</a>)</li>
+                  <li>COMP 421/521: Operating Systems and Concurrent Programming (<a href="https://www.clear.rice.edu/comp421/">Spring 2019</a>)</li>
+               </ul>
             </div>
             <br>
             <br>
