@@ -22,3 +22,49 @@ body{
 	padding-top: 50px;
 	border-bottom: 2px solid #ccc;
 }
+
+/* Teaching page custom styles */
+/* --- Modern blue accent palette for Teaching schedule --- */
+.schedule-table {
+    border-color: #d1d5db;
+}
+
+.schedule-table th {
+    background-color: #1d4ed8; /* blue-700 */
+    color: #ffffff;
+    vertical-align: middle;
+    font-weight: 600;
+    border-color: #1e40af; /* slightly darker */
+}
+
+.schedule-table tr:nth-child(odd):not(.table-secondary) {
+    background-color: #ffffff;
+}
+
+.schedule-table tr:nth-child(even):not(.table-secondary) {
+    background-color: #f8fafc; /* slate-50 */
+}
+
+.table-secondary {
+    background-color: #e0e7ff !important; /* indigo-100 */
+    color: #000000;
+    font-style: italic;
+}
+
+.schedule-table tbody tr:hover:not(.table-secondary) {
+    background-color: #eaf1ff; /* lighter blue */
+}
+
+.schedule-table td, .schedule-table th {
+    font-size: 0.95rem;
+    padding: 0.55rem;
+}
+
+.schedule-table a {
+    color: #1d4ed8;
+}
+
+.schedule-table a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+}
