@@ -19,32 +19,28 @@
       .selected {
          display: none;
       }
+      #pub-filter {
+         margin-bottom: 15px; /* space between category links and first paper */
+      }
    </style>
    <script>
       $(document).ready(function() {
-         $('.pub-item[data-selected="false"]').hide(); // Hide non-selected items by default
-         $('#conf-pub').click(function(e) {
+         $('#ml-pub').click(function(e) {
             e.preventDefault();
             $('.pub-item').hide();
-            $('.pub-item[data-selected="true"]').show();
-            $('html, body').animate({
-            scrollTop: $('.selected').offset().top
-           }, 1000);
-          });
-         $('#workshop-pub').click(function(e) {
+            $('.pub-item[data-cat="ml"]').show();
+            $('html, body').animate({ scrollTop: $('#pub').offset().top }, 1000);
+         });
+         $('#net-pub').click(function(e) {
             e.preventDefault();
             $('.pub-item').hide();
-            $('.pub-item[data-selected="false"]').show();
-            $('html, body').animate({
-               scrollTop: $('.selected').offset().top
-            }, 1000);
+            $('.pub-item[data-cat="net"]').show();
+            $('html, body').animate({ scrollTop: $('#pub').offset().top }, 1000);
          });
          $('#all-pub').click(function(e) {
             e.preventDefault();
             $('.pub-item').show();
-            $('html, body').animate({
-            scrollTop: $('.selected').offset().top
-           }, 1000);
+            $('html, body').animate({ scrollTop: $('#pub').offset().top }, 1000);
          });
       });
    </script>
@@ -182,11 +178,13 @@
             <div>
                <span class="anchor" id="pub"></span>
                <h2 class="bg-light  h2color">Publications</h2>
-               <a href="#" id="conf-pub">[Full papers]</a> &nbsp; &nbsp; <a href="#" id="workshop-pub">[Workshop papers]</a> &nbsp; &nbsp; <a href="#" id="all-pub">[All papers]</a>
+               <div id="pub-filter" class="mb-2">
+                  <a href="#" id="ml-pub">[ML Systems]</a> &nbsp; &nbsp; <a href="#" id="net-pub">[Networked Systems]</a> &nbsp; &nbsp; <a href="#" id="all-pub">[All papers]</a>
+               </div>
 
                <ul>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>Towards Efficient and Practical GPU Multitasking in the Era of LLM</b></font>
                         <br><b>Jiarong Xing</b>, Yifan Qiao, Simon Mo, Xingqi Cui, Gur-Eyal Sela, Yang Zhou, Joseph Gonzalez, Ion Stoica
@@ -196,7 +194,7 @@
                      <br>
                   </div>
                   
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>Prism: Unleashing GPU Sharing for Cost-Efficient Multi-LLM Serving</b></font>
                         <br>Shan Yu, <b>Jiarong Xing</b>, Yifan Qiao, Mingyuan Ma, Yangmin Li, Yang Wang, Shuo Yang, Zhiqiang Xie, Shiyi Cao, Ke Bao, Ion Stoica, Harry Xu, Ying Sheng
@@ -206,7 +204,7 @@
                      <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>EXP-Bench: Can AI Conduct AI Research Experiments?</b></font>
                         <br>Patrick Tser Jern Kon, Jiachen Liu, Xinyi Zhu, Qiuyi Ding, Jingjia Peng, <b>Jiarong Xing</b>, Yibo Huang, Yiming Qiu,
@@ -217,7 +215,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>SkyLB: A Locality-Aware Cross-Region Load Balancer for LLM Inference</b></font>
                         <br>Tian Xia, Ziming Mao, Jamison Kerney, Ethan J. Jackson, Zhifei Li, <b>Jiarong Xing</b>, Scott Shenker, Ion Stoica
@@ -227,7 +225,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>S*: Test Time Scaling for Code Generation</b></font>
                         <br>Dacheng Li, Shiyi Cao, Chengkun Cao, Xiuyu Li, Shangyin Tan, Kurt Keutzer, <b>Jiarong Xing</b>, Joseph E Gonzalez, Ion Stoica
@@ -237,17 +235,7 @@
                      <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
-                     <li>
-                        <font size="4"><b>BlendServe: Optimizing Offline Inference for Auto-regressive Large Models with Resource-aware Batching</b></font>
-                        <br>Yilong Zhao, Shuo Yang, Kan Zhu, Lianmin Zheng, Baris Kasikci, Yang Zhou, <b>Jiarong Xing</b>, Ion Stoica
-                        <br><a href="https://arxiv.org/abs/2411.16102"> [arxiv.org 2024] </a>
-                     </li>
-                     <br>
-                  </div>
-
-
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
                      <li>
                         <font size="4"><b>Disaggregating Embedding Recommendation Systems with FlexEMR</b></font>
                         <br>Yibo Huang, Zhenning Yang, <b>Jiarong Xing</b>, Yi Dai, Yiming Qiu, Dingming Wu, Fan Lai, Ang Chen
@@ -257,7 +245,16 @@
                      <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="ml">
+                     <li>
+                        <font size="4"><b>BlendServe: Optimizing Offline Inference for Auto-regressive Large Models with Resource-aware Batching</b></font>
+                        <br>Yilong Zhao, Shuo Yang, Kan Zhu, Lianmin Zheng, Baris Kasikci, Yang Zhou, <b>Jiarong Xing</b>, Ion Stoica
+                        <br><a href="https://arxiv.org/abs/2411.16102"> [arxiv.org 2024] </a>
+                     </li>
+                     <br>
+                  </div>
+
+                  <div class="pub-item" data-selected="true" data-cat="net">
                      <li>
                         <font size="4"><b>On the Criticality of Integrity Protection in 5G Fronthaul Networks</b></font>
                         <br><b>Jiarong Xing*</b>, Sophia Yoo*, Xenofon Foukas, Daehyeok Kim, and Michael Reiter
@@ -268,7 +265,7 @@
                      <br>
                   </div>
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>Simplifying Cloud Management with Cloudless Computing</b></font>
                      <br>Yiming Qiu, Patrick Tser Jern Kon, <b>Jiarong Xing</b>, Yibo Huang, Hongyi Liu, Xinyu Wang, Peng Huang, Mosharaf Chowdhury, and Ang Chen
@@ -278,7 +275,7 @@
                   <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                      <li>
                         <font size="4"><b>Occam: A Programming System for Reliable Network Management</b></font>
                         <br><b>Jiarong Xing*</b>, Kuo-Feng Hsu*, Yiting Xia, Yan Cai, Yanping Li, Ying Zhang, and Ang Chen
@@ -290,7 +287,7 @@
                      <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Unleashing SmartNIC Packet Processing Performance in P4</b></font>
                      <br><b>Jiarong Xing</b>, Yiming Qiu, Kuo-Feng Hsu, Songyuan Sui, Khalid Manaa, Omer Shabtai, Yonatan Piasetzky, Matty Kadosh,
@@ -305,7 +302,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Enabling Resilience in Virtualized RANs with Atlas</b></font>
                      <br><b>Jiarong Xing*</b>, Junzhi Gong*, Xenofon Foukas, Anuj Kalia, Daehyeok Kim, and Manikanta Kotaru
@@ -318,7 +315,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Remote Direct Memory Introspection</b></font>
                      <br>Hongyi Liu, <b>Jiarong Xing</b>, Yibo Huang, Danyang Zhuo, Srinivas Devadas, and Ang Chen
@@ -331,7 +328,7 @@
                   <br>
                   </div>
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Runtime Programmable Switches</b></font>
                      <br><b>Jiarong Xing</b>, Kuo-Feng Hsu, Matty Kadosh, Alan Lo, Yonatan Piasetzky, Arvind Krishnamurthy, and Ang Chen
@@ -348,7 +345,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Bedrock: Programmable Network Support for Secure RDMA Systems</b></font>
                      <br><b>Jiarong Xing*</b>, Kuo-Feng Hsu*, Yiming Qiu, Ziyang Yang, Hongyi Liu, and Ang Chen
@@ -361,7 +358,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Bolt: Bridging the Gap between Auto-tuners and Hardware-native Performance</b></font>
                      <br><b>Jiarong Xing*</b>, Leyuan Wang*, Shang Zhang, Jack Chen, Ang Chen, and Yibo Zhu
@@ -376,7 +373,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Symbolic Distillation for Learned TCP Congestion Control</b></font>
                      <br>S P Sharan,  Wenqing Zheng, Kuo-Feng Hsu, <b>Jiarong Xing</b>, Ang Chen, Zhangyang Wang
@@ -388,7 +385,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>A Vision for Runtime Programmable Networks</b></font>
                      <br><b>Jiarong Xing</b>, Yiming Qiu, Kuo-Feng Hsu, Hongyi Liu, Matty Kadosh, Alan Lo, Aditya Akella, Thomas Anderson,
@@ -405,7 +402,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Automated SmartNIC Offloading Insights for Network Functions</b></font>
                      <br>Yiming Qiu, <b>Jiarong Xing</b>, Kuo-Feng Hsu, Qiao Kang, Ming Liu, Srinivas Narayana, and Ang Chen
@@ -420,7 +417,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Probabilistic Profiling of Stateful Data Planes for Adversarial Testing</b></font>
                      <br>Qiao Kang*, <b>Jiarong Xing*,</b> Yiming Qiu, and Ang Chen
@@ -433,7 +430,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>Ripple: A Programmable, Decentralized Link-Flooding Defense Against Adaptive Adversaries</b></font>
                      <br><b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
@@ -446,7 +443,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>Secure State Migration in the Data Plane</b></font>
                      <br><b>Jiarong Xing,</b> Ang Chen, and T.S. Eugene Ng
@@ -459,7 +456,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>A Feasibility Study on Time-aware Monitoring with Commodity Switches</b></font>
                      <br> Yiming Qiu, Kuo-Feng Hsu, <b>Jiarong Xing</b>, and Ang Chen
@@ -470,7 +467,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="true">
+                  <div class="pub-item" data-selected="true" data-cat="net">
                   <li>
                      <font size="4"><b>NetWarden: Mitigating Network Covert Channels while Preserving Performance</b></font>
                      <br><b>Jiarong Xing,</b> Qiao Kang, and Ang Chen
@@ -483,7 +480,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>Architecting Programmable Data Plane Defenses into the Network with FastFlex</b></font>
                      <br><b>Jiarong Xing,</b> Wenqing Wu, and Ang Chen
@@ -495,7 +492,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>Automated Attack Discovery in Data Plane Systems</b></font>
                      <br>Qiao Kang, <b>Jiarong Xing</b>, and Ang Chen
@@ -507,7 +504,7 @@
                   </div>
 
 
-                  <div class="pub-item" data-selected="false">
+                  <div class="pub-item" data-selected="false" data-cat="net">
                   <li>
                      <font size="4"><b>NetWarden: Mitigating Network Covert Channels without Performance Loss</b></font>
                      <br><b>Jiarong Xing,</b> Adam Morrison, and Ang Chen
